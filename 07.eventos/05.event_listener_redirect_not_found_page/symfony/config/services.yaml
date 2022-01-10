@@ -4,10 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-    #
-imports:
-    - { resource: ./services/event_listener.yaml }
-    
+
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -26,3 +23,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\EventListener\KernelExceptionListener:
+        arguments: 
+            - '@router'
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.response', method: 'onKernelResponse' }

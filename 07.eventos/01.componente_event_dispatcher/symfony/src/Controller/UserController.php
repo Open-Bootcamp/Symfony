@@ -40,10 +40,9 @@ class UserController extends AbstractController
             //
             $userRegisterEvent = new UserRegisterEvent($user);
             // $eventDispatcher->dispatch( 'user.register', $userRegisterEvent );
-            $user = $eventDispatcher->dispatch( $userRegisterEvent, UserRegisterEvent::NAME);
+            $user = $eventDispatcher->dispatch( $userRegisterEvent, UserRegisterEvent::NAME)->setRegisteredUser($user);
             // $user = $eventDispatcher->dispatch( $userRegisterEvent, UserRegisterEvent::NAME)->getRegisteredUser();
             // podríamos recuperar el usuario registrado
-            dump($user);
             //
             return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
         }
