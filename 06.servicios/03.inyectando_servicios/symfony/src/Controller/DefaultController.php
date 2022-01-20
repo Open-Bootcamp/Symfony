@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-// Services
+// service
 use App\Service\MessageGenerator;
 
 class DefaultController extends AbstractController
@@ -13,9 +14,8 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(MessageGenerator $messageGenerator): Response
     {
-    
         if($messageGenerator->getHappyMessage()){
-            $this->addFlash('success', 'Notification mail was sent successfully.');
+            $this->addFlash('success', 'Notification mail was sent succesfully');
         }
         // return
         return $this->render('default/index.html.twig', [
@@ -24,7 +24,7 @@ class DefaultController extends AbstractController
     }
 
     #[Route('/default', name: 'default')]
-    public function default(MessageGenerator $messageGenerator): Response
+    public function default(): Response
     {
         // return
         return $this->render('default/index.html.twig', [

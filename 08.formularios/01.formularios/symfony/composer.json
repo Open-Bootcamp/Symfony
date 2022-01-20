@@ -16,6 +16,7 @@
         "symfony/debug-bundle": "6.0.*",
         "symfony/dotenv": "6.0.*",
         "symfony/flex": "^2",
+        "symfony/form": "6.0.*",
         "symfony/framework-bundle": "6.0.*",
         "symfony/monolog-bundle": "^3.7",
         "symfony/proxy-manager-bridge": "6.0.*",

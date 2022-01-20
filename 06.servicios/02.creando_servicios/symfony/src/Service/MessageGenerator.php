@@ -1,10 +1,9 @@
 <?php
 
-// src/Service/MessageGenerator.php
 namespace App\Service;
 
-class MessageGenerator
-{
+class MessageGenerator {
+    
     public function getHappyMessage(): string
     {
         $messages = [
@@ -12,9 +11,8 @@ class MessageGenerator
             'That was one of the coolest updates I\'ve seen all day!',
             'Great work! Keep going!',
         ];
-
         $index = array_rand($messages);
-
+        // return 
         return $messages[$index];
     }
 }

@@ -2,29 +2,18 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-// 
-
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
-use App\Entity\User;
-use Doctrine\ORM\EntityManagerInterface;
 
 class SecurityController extends AbstractController
 {
 
-        /**
-     * @Route("/admin", name="admin")
-     */
-    public function index(): Response
-    {
-        return $this->render('security/index.html.twig', [
-            'controller_name' => 'SecurityController',
-        ]);
-    }
-    
     /**
      * @Route("/login", name="app_login")
      */
@@ -53,9 +42,10 @@ class SecurityController extends AbstractController
     /**
      * @Route("/first-user", name="app_first")
      */
-    public function firstUser( UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $manager )
+    public function firstUser(UserPasswordHasherInterface $passwordEncoder, EntityManagerInterface $manager): Response
     {
         $user = new User();
+        // generamos ahs del password
         $password = $passwordEncoder->hashPassword($user, 'admin');
         $user->setPassword($password);
         $user->setUsername('admin');
@@ -63,6 +53,8 @@ class SecurityController extends AbstractController
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
         $manager->flush();
+        // 
         return $this->redirectToRoute('app_login');
-    } 
+    }
+
 }

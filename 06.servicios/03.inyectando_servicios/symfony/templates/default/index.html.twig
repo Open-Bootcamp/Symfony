@@ -19,7 +19,6 @@
 
 	<div
 		class="example-wrapper">
-
 		{# read and display several types of flash messages #}
 		{% for label, messages in app.flashes(['success', 'warning']) %}
 			{% for message in messages %}
@@ -44,7 +43,9 @@
 				</code>
 			</li>
 		</ul>
-        <a href="{{path('index')}}">index</a><br>
-        <a href="{{path('default')}}">default</a>
+		<a href="{{path('index')}}">index</a><br>
+		<a href="{{path('default')}}">default</a>
+        <a href="{{path('new_index')}}">new index</a><br>
+		<a href="{{path('new_default')}}">new default</a>
 	</div>
 {% endblock %}

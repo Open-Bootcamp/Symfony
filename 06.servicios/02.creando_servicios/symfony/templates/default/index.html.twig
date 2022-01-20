@@ -20,14 +20,15 @@
 	<div
 		class="example-wrapper">
 
-		{# read and display several types of flash messages #}
+		{# begin:: message flash #}
 		{% for label, messages in app.flashes(['success', 'warning']) %}
 			{% for message in messages %}
-				<div class="flash-{{ label }}">
-					{{ message }}
+				<div class="flash-{{label}}">
+					{{message}}
 				</div>
 			{% endfor %}
 		{% endfor %}
+		{# end:: message flash #}
 		<h1>Hello
 			{{ controller_name }}! ✅</h1>
 
@@ -44,7 +45,7 @@
 				</code>
 			</li>
 		</ul>
-        <a href="{{path('index')}}">index</a><br>
-        <a href="{{path('default')}}">default</a>
+		<a href="{{path('index')}}">index</a>
+		<a href="{{path('default')}}">default</a>
 	</div>
 {% endblock %}

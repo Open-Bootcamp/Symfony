@@ -1,12 +1,11 @@
 <?php
-// src/EventListener/LoginListener.php
 
 namespace App\EventListener;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 use App\Entity\User;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 class LoginListener
 {
@@ -19,15 +18,12 @@ class LoginListener
 
     public function onSecurityInteractiveLogin(InteractiveLoginEvent $event)
     {
-        // Get the User entity.
+        // obtenemos el usuario
         $user = $event->getAuthenticationToken()->getUser();
-
-        // Update your field here.
+        // actualizamos el campo
         $user->setLastLogin(new \DateTime());
-
-        // Persist the data to database.
+        // persistimos
         $this->em->persist($user);
         $this->em->flush();
-
     }
 }
